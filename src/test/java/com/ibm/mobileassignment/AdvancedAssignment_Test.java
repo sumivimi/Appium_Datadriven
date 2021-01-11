@@ -27,46 +27,37 @@ public class AdvancedAssignment_Test {
 	AndroidDriver driver;
 
 	@BeforeMethod
-	public void invokingDevice() throws MalformedURLException {
-		DesiredCapabilities capability = new DesiredCapabilities();
-		capability.setCapability(MobileCapabilityType.DEVICE_NAME, "Vimala");
-		capability.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
-		capability.setCapability(MobileCapabilityType.BROWSER_NAME, "Chrome");
-		driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capability);
-		System.out.println(driver + "Driver");
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-	}
+	public void beforeMethod() throws InterruptedException, MalformedURLException {
+		  DesiredCapabilities capability= new DesiredCapabilities();
+		  capability.setCapability(MobileCapabilityType.DEVICE_NAME, "Vimala");
+		  capability.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
+		  capability.setCapability(MobileCapabilityType.BROWSER_NAME, "Chrome");
+		  driver= new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"),capability); 
+		  driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	      
+		  }
 
 	@Test
 	public void function() throws IOException, InterruptedException {
 		File file = new File("C:\\Users\\VimalaSubbaraj\\Desktop\\Selenium_udemy\\SS\\TestDataSheet.xlsx");
-		System.out.println(file + "============");
 		FileInputStream fis = new FileInputStream(file);
-		System.out.println(fis + "============");
-
 		XSSFWorkbook wb = new XSSFWorkbook(fis);
 		XSSFSheet sheet = wb.getSheet("TestSheet");
 		int rc = sheet.getLastRowNum();
+		System.out.println("Rowcount" +rc);
 		for (int i = 1; i < rc; i++) {
 
 			String FirstName = sheet.getRow(i).getCell(1).getStringCellValue();
-			System.out.println("Firstname=" + FirstName);
 			String LastName = sheet.getRow(i).getCell(2).getStringCellValue();
-			System.out.println("LastName=" + LastName);
 			String Email = sheet.getRow(i).getCell(3).getStringCellValue();
-			System.out.println("Email=" + Email);
 			String Phone = sheet.getRow(i).getCell(4).getStringCellValue();
-			System.out.println("Phone=" + Phone);
 			String Country = sheet.getRow(i).getCell(5).getStringCellValue();
-			System.out.println("Country=" + Country);
-			String JobRole = sheet.getRow(i).getCell(6).getStringCellValue();
-			System.out.println("JobRole=" + JobRole);
+		    String JobRole = sheet.getRow(i).getCell(6).getStringCellValue();
 			String Company = sheet.getRow(i).getCell(7).getStringCellValue();
-			System.out.println("Company=" + Company);
+			
 			driver.get("https://magento.com/");
 			Thread.sleep(3000);
-			driver.findElement(By.xpath("//button[@class='nav-menu-button js-menu-button visible-xs visible-sm']"))
-					.click();
+			driver.findElement(By.xpath("//button[@class='nav-menu-button js-menu-button visible-xs visible-sm']")).click();
 			driver.findElement(By.xpath("//*[@id='block-header']/ul/li[8]/a")).click();
 			driver.findElement(By.xpath("//ul[@class='menu menu-level-1']/li/div/div[2]/p[2]/a")).click();
 			JavascriptExecutor js = (JavascriptExecutor) driver;

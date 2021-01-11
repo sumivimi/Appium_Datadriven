@@ -3,13 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.ibm.mobileassignment.AdvancedAssignment">
+      <class name="com.ibm.mobileassignment.AdvancedAssignment_Test">
         <methods>
           <include name="function"/>
           <include name="afterMethod"/>
-          <include name="invokingDevice"/>
+          <include name="beforeMethod"/>
         </methods>
-      </class> <!-- com.ibm.mobileassignment.AdvancedAssignment -->
+      </class> <!-- com.ibm.mobileassignment.AdvancedAssignment_Test -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
